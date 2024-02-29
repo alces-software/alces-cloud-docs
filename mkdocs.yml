@@ -1,0 +1,96 @@
+site_name: Alces Cloud Knowledgebase
+repo_url: https://github.com/alces-software/alces-cloud-docs
+nav:
+  - What is Alces Cloud?:
+    - docs/index.md
+  - Getting Started:
+      - docs/starter/index.md
+      - Accessing Alces Cloud: docs/starter/access.md
+      - Using the Dashboard: docs/starter/dashboard.md
+      - Creating an SSH Key: docs/starter/key.md
+      - Creating an instance: docs/starter/instance.md
+  - Resources:
+      - Quotas: docs/quotas/overview.md
+      - Compute:
+        - Flavors: docs/compute/flavors.md
+        - Images: docs/compute/images.md
+        - Remote Console: docs/compute/console.md
+      - Networking:
+        - Networks: docs/networking/networks.md
+        - Security Groups: docs/networking/secgroups.md
+      - Storage:
+        - Volumes: docs/storage/volumes.md
+  - Troubleshooting:
+      - docs/troubleshooting/index.md
+      - FAQs: docs/troubleshooting/faq.md
+      - Instances: docs/troubleshooting/instances.md
+  - Policies:
+    - docs/policy/index.md
+    - Usage Policies: docs/policy/usage.md
+    - Terms of Service: docs/policy/tos.md
+
+theme:
+  name: material
+  custom_dir: custom_theme/
+  logo: docs/assets/images/logo.png
+  favicon: docs/assets/images/favicon.ico
+  features:
+    - content.code.annotate
+    - content.code.copy
+    - navigation.sections
+    - navigation.indexes # Allows adding overview pages to sections, name them index.md
+    - navigation.tabs
+    - navigation.top
+    - search.suggest
+    - search.highlight
+extra:
+  version:
+    provider: mike
+    default: latest
+plugins:
+  - macros:
+      include_dir: partials
+  - search
+  - minify:
+      minify_html: true
+      minify_js: true
+      minify_css: true
+  - spellcheck:
+      backends:
+        - symspellpy
+        - codespell:  # or nested configs
+            dictionaries: [clear, rare, informal, usage, code, names]
+      known_words: codespell/known_words.txt
+      ignore_code: yes
+      min_length: 3
+markdown_extensions:
+  - abbr
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - admonition
+  - pymdownx.details
+  - pymdownx.keys
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true 
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.snippets:
+      auto_append:
+        - includes/abbreviations.md
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - toc:
+      title: On this page
+extra_css: 
+  - stylesheets/extra.css
+extra_javascript:
+  - javascripts/extra.js
+  - javascripts/warehouse.js
