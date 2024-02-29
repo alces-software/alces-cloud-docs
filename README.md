@@ -1,6 +1,6 @@
 ## Overview
 
-A test of `mkdocs` for hosting the OpenFlight docs
+A test of `mkdocs` for hosting the Alces cloud docs
 
 ## Setup
 
@@ -10,14 +10,14 @@ A test of `mkdocs` for hosting the OpenFlight docs
 
 - Create python virtualenv and activate virtualenv
   ```bash
-  cd docs.openflighthpc.org
+  cd alces-cloud-docs
   python3.10 -m venv venv
   source venv/bin/activate
   ```
 
 -  Install dependencies
    ```bash
-   cd alces.cloud.docs
+   cd alces-cloud-docs
    pip install --upgrade pip
    pip install -r requirments.txt
    ```
@@ -31,7 +31,7 @@ A test of `mkdocs` for hosting the OpenFlight docs
 
 If using python virtualenv, then source the environemnt.
   ```bash
-  cd docs.openflighthpc.org
+  cd alces-cloud-docs
   source venv/bin/activate
   ```
 
