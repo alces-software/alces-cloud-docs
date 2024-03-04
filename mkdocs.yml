@@ -28,6 +28,12 @@ nav:
     - docs/policy/index.md
     - Usage Policies: docs/policy/usage.md
     - Terms of Service: docs/policy/tos.md
+  - Blog:
+    - blog/index.md
+
+not_in_nav: |
+ /index.md
+  /blogs
 
 theme:
   name: material
@@ -48,6 +54,15 @@ extra:
     provider: mike
     default: latest
 plugins:
+  - blog:
+      post_date_format: long
+      post_url_format: "{slug}"
+      post_excerpt_max_authors: 2
+      pagination_per_page: 5
+      pagination_format: "$link_previous $page $link_next"
+      post_readtime: true
+      post_readtime_words_per_minute: 265
+      post_excerpt: required
   - macros:
       include_dir: partials
   - search
@@ -93,4 +108,4 @@ extra_css:
   - stylesheets/extra.css
 extra_javascript:
   - javascripts/extra.js
-  - javascripts/warehouse.js
+  - javascripts/blogs.js
