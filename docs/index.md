@@ -15,7 +15,7 @@ search:
     >
   </div>
   <div id="home-text">
-    <h1 id="home-header">HPC for <span class="blue-text">everyone</span></h1>
+    <h1 id="home-header">Alces Cloud for <span class="blue-text">everyone</span></h1>
     <h2 id="home-subheader">
       The open source software and expert knowledgebase making high performance computing accessible to all.
     </h2>
