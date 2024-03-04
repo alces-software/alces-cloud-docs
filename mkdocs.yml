@@ -28,7 +28,7 @@ nav:
     - docs/policy/index.md
     - Usage Policies: docs/policy/usage.md
     - Terms of Service: docs/policy/tos.md
-  - Blog:
+  - Blogs:
     - blog/index.md
 
 not_in_nav: |
@@ -63,6 +63,7 @@ plugins:
       post_readtime: true
       post_readtime_words_per_minute: 265
       post_excerpt: required
+      authors_file: blog/.authors.yml
   - macros:
       include_dir: partials
   - search
