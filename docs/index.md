@@ -17,9 +17,9 @@ search:
   <div id="home-text">
     <h1 id="home-header">Alces Cloud for <span class="blue-text">everyone</span></h1>
     <h2 id="home-subheader">
-      The open source software and expert knowledgebase making high performance computing accessible to all.
-    </h2>
-    <a class="button big-text" href="#mission-block">FIND OUT MORE</a>
+      Alces Cloud is a cloud offering, backed by purpose built infrastructure tailored for HPC and other workloads.
+    </h3>
+    <!-- <a class="button big-text" href="#mission-block">FIND OUT MORE</a> -->
   </div>
 </section>
 <section id="cloud-block" class="home-block">
@@ -29,7 +29,7 @@ search:
     src="assets/images/cloud_bar.svg"
   >
 </section>
-<section id="mission-block" class="home-block">
+<!-- <section id="mission-block" class="home-block">
   <div id="mission-text">
     <h1>The OpenFlight mission:</h1>
     <p class="tagline">
@@ -87,8 +87,8 @@ search:
       <a class="button" href="solo">LEARN MORE</a>
     </div>
   </div>
-</section>
-<section id="green-block" class="home-block">
+</section> -->
+<!-- <section id="green-block" class="home-block">
   <div id="green-container">
     <div id="green-text">
       <h1>Greener HPC</h1>
@@ -116,8 +116,8 @@ search:
       <a class="button" href="solo">GET FLIGHT SOLO</a>
     </div>
   </div>
-</section>
-<div id="home-footer-block" class="home-block footer">
+</section> -->
+<!-- <div id="home-footer-block" class="home-block footer">
   <img
     id="cloud-l" 
     alt=""
@@ -133,5 +133,5 @@ search:
     alt=""
     class="cloud parting-cloud" src="assets/images/parting_cloud_r.svg"
   >
-</div>
+</div> -->
 <div class="md-header__topic"></div>
