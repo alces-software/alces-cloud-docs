@@ -9,3 +9,12 @@ onboarding
 runtime
 uptime
 subnets
+firewalld
+kubeconfig
+kubectl
+kubernetes
+master
+rke
+selinux
+yml
+kube_config_cluster
