@@ -73,18 +73,18 @@ mike delete --push 20XX.Y
 - Create blog file:
   `docs/blog/post/blog-file-name.md`: This is the template we are using for blog, add these lines at the top of each file and then start adding the blog content below.
   ```markdown
-    ---
-    authors:
-      - shubhamdang
-    date: 2024-03-03
-    categories:
-      - Kubernetes
-    readtime: 2
-    ---
+  ---
+  authors:
+    - shubhamdang
+  date: 2024-03-03
+  categories:
+    - Kubernetes
+  readtime: 2
+  ---
 
-    # Blog Title
-    ...
-    blog content start from here
+  # Blog Title
+  ...
+  blog content start from here
   ```
 
     `author:` Name of the author of blog.
@@ -95,12 +95,12 @@ mike delete --push 20XX.Y
   In order to add new author, we need to add a entry in file `docs/blog/post/.authors.yml` like below
 
   ```markdown
-      authors:
-        shubhamdang:
-          name: Shubham Dang
-          description: Creator
-          avatar: https://avatars.githubusercontent.com/u/15174448
-          url: https://github.com/shubhamdang
+  authors:
+    shubhamdang:
+      name: Shubham Dang
+      description: Creator
+      avatar: https://avatars.githubusercontent.com/u/15174448
+      url: https://github.com/shubhamdang
   ```
 
 - Test the Blog:
@@ -110,20 +110,20 @@ mike delete --push 20XX.Y
   In blog listing, by defualt all the content of the blog is shown. If we wanted to show some initial lines of the blogs then we can add a excerpt in the blog content.
 
   ```markdown
-    ---
-    authors:
-      - shubhamdang
-    date: 2024-03-03
-    categories:
-      - Kubernetes
-    readtime: 2
-    ---
+  ---
+  authors:
+    - shubhamdang
+  date: 2024-03-03
+  categories:
+    - Kubernetes
+  readtime: 2
+  ---
 
-    # Blog Title
-    ...
-    blog content start from here.
-    <!-- more -->
-    some more content is here.
+  # Blog Title
+  ...
+  blog content start from here.
+  <!-- more -->
+  some more content is here.
   ```
 
   According to example it will show content above `<!-- more -->` in the blog listing and rest will come as `Continue reading`.
