@@ -4,7 +4,7 @@ authors:
 date: 2024-03-06
 categories:
   - se1
-readtime: 2
+readtime: 5
 ---
 
 # Create a Single Node Slurm Cluster
