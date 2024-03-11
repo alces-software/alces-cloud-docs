@@ -2,6 +2,10 @@
 Alces Cloud provides you with the ability to create and manage your own private networks. This can be useful if you need to isolate an instances from other instances. Your project will come with a single network already configured, but additional networks can be created if required.
 
 Alces Cloud also provides an external network in order for you to access your instances. Instances cannot be connected directly to this network and instead floating IPs are allocated to your project and then associated to your instances.
+
+!!! info
+    The Alces Cloud external network is limited to 30MB/s per instance when using a floating IP. Instances without floating IPs will share a combined 30MB/s limit.
+
 === "CLI"
     ## Create a Network
     ```
