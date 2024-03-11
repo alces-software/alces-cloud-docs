@@ -1,9 +1,14 @@
 [
   {
-    "version": "alpha",
-    "title": "alpha",
+    "version": "alphav1",
+    "title": "alphav1",
     "aliases": [
       "latest"
     ]
+  },
+  {
+    "version": "alpha",
+    "title": "alpha",
+    "aliases": []
   }
 ]
