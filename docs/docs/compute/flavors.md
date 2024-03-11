@@ -1,7 +1,7 @@
 #Flavors
 Alces Cloud instances are available in a number of flavors. The flavor chosen will define the resources available to your instance.
 
-Currently, there are four flavors available on Alces Cloud with the following sizes:
+Currently, there are two flavors available on Alces Cloud with the following sizes:
 
 | Flavor | VCPUs | RAM | Ephemeral Disk | Root Disk|
 |---|---|---|---|---|
