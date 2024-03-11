@@ -5,7 +5,10 @@ Alces Cloud also provides an external network in order for you to access your in
 === "CLI"
     ## Create a Network
     ```
-    here are some openstack commands to do networks
+    #Create a network
+    #Create a subnet
+    #Create a router
+    openstack router create <router-name>
     ```
 
 === "GUI"
