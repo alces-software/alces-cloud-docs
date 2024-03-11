@@ -3,10 +3,13 @@ Alces Cloud instances are available in a number of flavors. The flavor chosen wi
 
 Currently, there are two flavors available on Alces Cloud with the following sizes:
 
-| Flavor | VCPUs | RAM | Ephemeral Disk | Root Disk|
-|---|---|---|---|---|
-| p1.small | 6 | 48 GB | 0 GB | 500 GB|
-| p1.large | 12 | 96 GB | 0 GB | 1000 GB|
+| Flavor | VCPUs | RAM | Ephemeral Disk | Root Disk | I/O Limit |
+|---|---|---|---|---|---|
+| p1.small | 6 | 48 GB | 0 GB | 500 GBi | 50 MB/s Read + Write |
+| p1.large | 12 | 96 GB | 0 GB | 1000 GB | 100 MB/s Read + Write |
+
+!!! info
+    I/O limits apply to instances booted using a local root disk. If you choose to boot your instance from a volume, the relevant volume limits will apply instead.
 
 You can also view these using the command line:
 
