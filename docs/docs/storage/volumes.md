@@ -1,6 +1,12 @@
 #Volumes
 A volume acts as the virtual hard drive for your instances. All instances are required to be booted from a volume and additional volumes can be attached to your instances if you require additional disks.
 
+Available volume types:
+
+| Volume Type | I/O | IOPs |
+|---|---|---|
+| hdd.1 | 20 MB/s Read + Write | 60 IOPs Read + Write |
+
 === "CLI"
 
     ```
