@@ -136,3 +136,8 @@ header {
 :root {
     --header-height: 4rem;
 }
+
+#alces-logo-image{
+    height: 80px;
+    width: 60px;
+}
