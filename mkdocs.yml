@@ -5,8 +5,8 @@ nav:
     - docs/index.md
   - Getting Started:
       - docs/starter/index.md
-      - Accessing Alces Cloud: docs/starter/access.md
-      - Using the Dashboard: docs/starter/dashboard.md
+      - Accessing Alces Cloud (Linux/MacOS): docs/starter/access-linux.md
+      - Accessing Alces Cloud (Windows): docs/starter/access-windows.md
       - Creating an SSH Key: docs/starter/key.md
       - Creating an instance: docs/starter/instance.md
   - Resources:
@@ -28,8 +28,8 @@ nav:
     - docs/policy/index.md
     - Usage Policies: docs/policy/usage.md
     - Terms of Service: docs/policy/tos.md
-  - Blogs:
-    - blog/index.md
+  # - Blogs:
+  #   - blog/index.md
 
 not_in_nav: |
  /index.md

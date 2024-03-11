@@ -5,21 +5,23 @@ The following images are currently available on Alces Cloud:
 
 | Name | Description | Default User |
 |---|---|---|
-| Alces - Rocky 9.3 | Rocky Linux release 9.3 (Blue Onyx) | rocky |
-| Alces - Ubuntu 22.04.3 (LTS) | Ubuntu 22.04.3 (Long Term Support) | ubuntu |
-| Alces - Flight Solo 2023.6 | Flight Solo 2023.6 release | flight |
+| Rocky 9.3 | Rocky Linux release 9.3 (Blue Onyx) | rocky |
+| Ubuntu 22.04.3 (LTS) | Ubuntu 22.04.3 (Long Term Support) | ubuntu |
 
-Further documentation on using "Flight Solo" (a HPC-ready, platform-agnostic image) can be found [here](https://www.openflighthpc.org/latest/docs/flight-solo/).
+You can also view your available images (including custom ones):
 
-You can also view these using the command line:
+=== "CLI"
 
-```
-(openstack) [user@stack01[poc1] ~]$ openstack image list --public
-+--------------------------------------+------------------------------+--------+
-| ID                                   | Name                         | Status |
-+--------------------------------------+------------------------------+--------+
-| 856ad2cc-3c8c-4914-b3ba-b226634d8158 | Alces - Flight Solo 2023.6   | active |
-| b7e0d27f-1266-4069-a9b8-fb8a71f25421 | Alces - Rocky 9.3            | active |
-| 8711c1da-71f8-4c09-85bd-6efdc2346188 | Alces - Ubuntu 22.04.3 (LTS) | active |
-+--------------------------------------+------------------------------+--------+
-```
+    ```
+    (openstack) [user@stack01[poc1] ~]$  openstack image list
+    +--------------------------------------+----------------------+--------+
+    | ID                                   | Name                 | Status |
+    +--------------------------------------+----------------------+--------+
+    | b7e0d27f-1266-4069-a9b8-fb8a71f25421 | Rocky 9.3            | active |
+    | 8711c1da-71f8-4c09-85bd-6efdc2346188 | Ubuntu 22.04.3 (LTS) | active |
+    +--------------------------------------+----------------------+--------+
+    ```
+
+=== "GUI"
+    Alces Cloud dashboard overview page / Images:.
+
