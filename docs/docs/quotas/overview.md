@@ -1,9 +1,11 @@
 #Quotas
 ## Checking your current Quota
 Each project is assigned a quota that defines how much of each resource a project can use. For each resource consuming operation (such as creating an instance), the request is checked against your maximum permitted quota.
-    
+  
 Your project quota and usage can be checked using:
 === "CLI"
+
+    To view your current quota and usage:
 
     ```
     (openstack) [user@stack01[poc1] ~]$ openstack quota show --usage
@@ -50,3 +52,14 @@ Your project quota and usage can be checked using:
     You can also view some of the key quotas from the Alces Cloud dashboard overview page.
 
     [<img src="../img/quotas.png" width="800px" />](img/quotas.png)
+
+## Image Quotas
+
+Your project also has some additional image quotas limiting the amount and size of images you are allowed to upload.
+
+| Limit | Quota |
+|---|---|
+| Total Images | 10 |
+| Maximum Image Size | 100GB |
+| Total Image Storage | 250GB |
+| Maximum Parallel Uploads | 3 |
