@@ -12,6 +12,8 @@ You can also view your available images (including custom ones):
 
 === "CLI"
 
+    From the Alces Cloud login node, you can use the `openstack` command:
+
     ```
     (openstack) [user@stack01[poc1] ~]$  openstack image list
     +--------------------------------------+----------------------+--------+
@@ -23,5 +25,7 @@ You can also view your available images (including custom ones):
     ```
 
 === "GUI"
-    Alces Cloud dashboard overview page / Images:.
 
+    From the Alces Cloud dashboard, click `Compute` and then `Images`:
+
+    [<img src="../img/images.png" width="800px" />](img/images.png)
