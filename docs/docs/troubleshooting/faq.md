@@ -15,4 +15,8 @@ For security, we run a service which temporarily blocks IP addresses after 3 fai
 ## My disk speeds aren't performing as well as I'd expect
 We offer a number of different storage options on Alces Cloud - utilising the 'ephemeral disk' available with your flavor selection will offer greater performance
 
+## What types of nodes are currently available through Alces Cloud?
+Alces Cloud offers exclusive access to the CPU cores on the instances that you create, backed by physical resource, ensuring that you get the best performance per core possible
 
+## I have available compute quota but I'm getting an error launching my instances
+ 
