@@ -45,7 +45,7 @@ With your password configured, you are now able to access the Alces Cloud servic
 
 
 === "GUI"
-    For users wishing to access Alces Cloud via a GUI (using Openstack Horizo), users must first connect to the Alces Cloud VPN service.
+    For users wishing to access Alces Cloud via a GUI (using Openstack Horizon), users must first connect to the Alces Cloud VPN service.
 
     ## Secure VPN
     To connect to this, SSH to the login node as above and copy the `cloudvpn.conf` file available in your home directory to your local machine. This can be done using the `scp` command.
