@@ -18,3 +18,13 @@ rke
 selinux
 yml
 kube_config_cluster
+config
+keypair
+ovpn
+cirros
+cloudvpn
+catalog
+hdd
+cli
+hostname
+slurm
