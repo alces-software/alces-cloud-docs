@@ -14,7 +14,7 @@ With your password configured, you are now able to access the Alces Cloud servic
 
 
 === "CLI"
-    The Alces Cloud service provides an interactive login node for users who prefer to use the command line instead of the dashboard to manage their instances. This is also used for your initial onboarding process.
+    The Alces Cloud service provides an interactive login node for users who prefer to use the command line instead of the dashboard to manage their instances.
 
     [<img src="../img/access_cloud_win5.png" width="800px" />](img/access_cloud_win5.png)
 
@@ -28,7 +28,6 @@ With your password configured, you are now able to access the Alces Cloud servic
 
 === "GUI"
     For users wishing to access Alces Cloud via a GUI (using Openstack Horizon) then we provide a secure VPN in order for you to access this service.
-
         
     ## Secure VPN
     To connect to this, SSH to the login node as above and copy the `cloudvpn.conf` file available in your home directory to your local machine. This can be done using the `scp` command.
