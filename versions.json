@@ -2,9 +2,7 @@
   {
     "version": "image",
     "title": "image",
-    "aliases": [
-      "staging"
-    ]
+    "aliases": []
   },
   {
     "version": "alpha",
