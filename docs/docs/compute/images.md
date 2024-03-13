@@ -1,5 +1,5 @@
 #Images
-Alces Cloud includes a number of maintained images for supported operating systems. It is recommended to use an Alces supported image, however you are also able to upload you own images if required.
+Alces Cloud includes a number of public images for common operating systems. Users are also able to upload their own images if required.
 
 The following images are currently available on Alces Cloud:
 
