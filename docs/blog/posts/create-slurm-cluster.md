@@ -1,25 +1,68 @@
 ---
 authors:
   - shubhamdang
-date: 2024-03-03
+date: 2024-03-06
 categories:
   - se1
 readtime: 5
 ---
 
+# Create a Single Node Slurm Cluster
 
-# Kubernetes Installation With RKE
-In this blog, we'll guide you through the seamless installation of a Kubernetes cluster on a RHEL-based operating system. Our setup involves two nodes; one serving as both the RKE and master node, and the other dedicated as a worker node.
+In this blog, we'll guide you through the seamless upload of Flight solo image on alces cloud and then followed by the installation of a slurm standalone cluster installation. Our setup involves a single nodes that has slurm manager installed on it and that can be further used to execute HPC workloads.
 
-Let's start with a step-by-step process, starting from creating virtual machines on the Alces Cloud platform, leading up to the installation of the Kubernetes cluster using RKE.
+Let's start with a step-by-step process, starting from uploading flight solo image, then creating virtual machines on the Alces Cloud platform, followed by verification of setup by running a simlple HPC job.
 <!-- more -->
+
+## Upload Flight Solo Image
+
+- Download the Flight Solo OpenStack image [here](https://repo.openflighthpc.org/?prefix=images/FlightSolo/)
+- Upload the image
+
+    === "GUI"
+        To upload the image on Alces Cloud you can utilise the Image Wizard.
+        On the left side bar, navigate to `Compute` and then `Images`. On the top right, click `Create Image` to open the wizard. Fill the image information like name, description, image source (path of flight solo image downloaded in above step), image format, image visibility and Protected, then click `Next` to add image metadata if required.
+
+        [<img src="../images/image-wizard-1.png" width="800px" />](images/image-wizard-1.png)
+
+        Once metadata are also done, then click `Create Image` to uplad the image to cloud. When Image is uploaded successfully then it will be visible in image listing page.
+        
+        [<img src="../images/image-wizard-2.png" width="800px" />](images/image-wizard-2.png)
+
+    === "CLI"
+        ```bash
+        openstack image create --disk-format raw --min-disk 10 --min-ram 2048 --file /path/to/Flight_Solo_VERSION_generic-cloudinit.raw Flight_Solo_VERSION_generic-cloudinit
+        ```
+
+        Example of Flight Solo Image Upload
+        ```bash
+        openstack image create --disk-format raw --min-disk 10 --min-ram 2048 --file Flight_Solo_2023-6_generic-cloudinit.raw Flight_Solo_2023_6
+        +------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Field            | Value                                                                                                                                                  |
+        +------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | container_format | bare                                                                                                                                                   |
+        | created_at       | 2024-03-07T03:57:06Z                                                                                                                                   |
+        | disk_format      | raw                                                                                                                                                    |
+        | file             | /v2/images/96384e7b-af90-47e3-b5c9-fbe7343200a9/file                                                                                                   |
+        | id               | 96384e7b-af90-47e3-b5c9-fbe7343200a9                                                                                                                   |
+        | min_disk         | 10                                                                                                                                                     |
+        | min_ram          | 2048                                                                                                                                                   |
+        | name             | Flight_Solo_2023_6                                                                                                                                     |
+        | owner            | 17234a6cc8954d748ed74a31680ea39b                                                                                                                       |
+        | properties       | os_hidden='False', owner_specified.openstack.md5='', owner_specified.openstack.object='images/Flight_Solo_2023_6', owner_specified.openstack.sha256='' |
+        | protected        | False                                                                                                                                                  |
+        | schema           | /v2/schemas/image                                                                                                                                      |
+        | status           | queued                                                                                                                                                 |
+        | tags             |                                                                                                                                                        |
+        | updated_at       | 2024-03-07T03:57:06Z                                                                                                                                   |
+        | visibility       | shared                                                                                                                                                 |
+        +------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
+        ```
 
 ## Launch the Instance
 
-Lauch 2 instances for our setup where one node will act as a rke and master node, whereas second node will act as worker node in the kubernetes cluster.
-
 === "GUI"
-    To launch instance on Alces Cloud you can utilise the Launch Instance wizard.
+    To launch your instance on Alces Cloud you can utilise the Launch Instance wizard.
 
     On the left side bar, navigate to `Compute` and then `Instances`. On the top right, click `Launch Instance` to open the wizard. Choose a suitable name for your instance, then  click `Next`.
 
@@ -78,7 +121,6 @@ Lauch 2 instances for our setup where one node will act as a rke and master node
     Warning: Permanently added '10.199.31.5' (ED25519) to the list of known hosts.
     [rocky@myinstance ~]$ 
     ```
-
 
 
 === "CLI"
@@ -205,100 +247,95 @@ Lauch 2 instances for our setup where one node will act as a rke and master node
     +--------------------------------------+------+--------+-------------------------------------------------+--------------------------+--------+
     ```
 
-## Kubernetes Installation with RKE
-Here we have 2 types of nodes:
-rke node: node where rke utility is installed that is responsible for installation of k8s cluster on other nodes.
-k8s nodes: nodes that are the part of k8s cluster where installation takes place.
 
-**Prerequisites**
-
-- Docker must be installed on all the nodes of k8s cluster.
-  ```bash
-  sudo dnf check-update
-  sudo dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-  sudo dnf install docker-ce docker-ce-cli containerd.io
-  sudo systemctl start docker
-  sudo systemctl status docker
-  sudo systemctl enable docker
-
-  # Execute docker cli without sudo
-  sudo usermod -aG docker $(whoami)
-
-  # You will need to log out of the Droplet and back in as the same user to enable this change.
-  ```
-
-- password less ssh to all k8s nodes from rke node.
-
-Here we are creating a cluster with one master node and one worker node, so number of vm required here is 2. we also need to setup a rke node as well.
-
-**Initial setup for RKE node**
-
-- Install RKE 
-  On the first instance we will be installing rke cli to install our cluster, below are the instructions.
-
-  ```bash 
-  wget https://github.com/rancher/rke/releases/download/v1.2.9/rke_linux-amd64 -O rke chmod +x rke
-  ```
-- Perform a password-less ssh from rke node to k8s nodes.
-- Install kubectl to access k8s resources.
-
-  ```bash
-  yum install epel-release
-  yum install snapd
-  systemctl enable --now snapd.socket
-  ln -s /var/lib/snapd/snap /snap
-  snap install kubectl --classic
-  ```
+## Create Slurm Cluster Using Flight Solo
 
 
-**Initial setup for k8s node**
+1. Parse your node(s) with the command `flight hunter parse`.
 
-1. Disabled selinux on all nodes and firewalld.
+    1. This will display a list of hunted nodes, for example
+        ```bash 
+        [flight@myinstance.novalocal ~]$ flight hunter parse
+        Select nodes: (Scroll for more nodes)
+        ‣ ⬡ myinstance.novalocal - 10.10.0.1
+        ```
+
+    1. Select the desired node to be parsed with ++space++, and you will be taken to the label editor
+        ```bash
+        Choose label: login-node.novalocal
+        ```
+
+    1. Here, you can edit the label like plain text
+        ```bash
+        Choose label: login1
+        ```
+
+        !!! tip
+            You can clear the current node name by pressing ++down++ in the label editor.
+
+    1. When done editing, press ++enter++ to save. The modified node label will appear next to the ip address and original node label.
+        ```bash
+        Select nodes: login-node.novalocal - 10.10.0.1 (login1) (Scroll for more nodes)
+        ‣ ⬢ myinstance.novalocal - 10.10.0.1 (login1)
+        ```
+
+    1. From this point, you can either hit ++enter++ to finish parsing and process the selected nodes, or continue changing nodes. Either way, you can return to this list by running `flight hunter parse`.
+
+    1. Save the node inventory before moving on to the next step.
+
+        !!! tip
+            See `flight hunter parse -h` for more ways to parse nodes.
+
+### Add genders
+
+1. **Optionally**, you may add genders to the newly parsed node. For example, in the case that the node should have the gender `cluster` and `all` then run the command:
     ```bash
-    setenforce 0  
-    systemctl stop firewalld
+    flight hunter modify-groups --add cluster,all login1
     ```
-    
-2. Install Docker on all nodes.
 
-  ```bash
-  yum update –y 
-  yum install -y yum-utils  
-  yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo 
-  yum install docker-ce docker-ce-cli containerd.io 
-  systemctl start docker  
-  systemctl enable docker
-  ``` 
+## SLURM Standalone Configuration
 
 
-**Steps for installation of K8s cluster**
+1. Configure profile
 
-On the rke node, create a cluster.yml file specifying the user , ip of k8s nodes, type of networking , roles and version of k8s we want to install.
+    ```bash
+    flight profile configure
+    ```
 
-  ```yaml
-  # cluster.yml
-  nodes: 
-  - address: 10.151.0.xx
-    user: rke 
-    role: 
-      - controlplane 
-      - etcd 
-    hostname_override: master
-    
-  - address: 10.151.0.xx
-    user: rke 
-    role: 
-      - worker
-    hostname_override: worker
-    
-  kubernetes_version: v1.20.8-rancher1-1
-  network: 
-      plugin: canal
-  ```
+    1. This brings up a UI, where several options need to be set. Use up and down arrow keys to scroll through options and enter to move to the next option. Options in brackets coloured yellow are the default options that will be applied if nothing is entered.
+        - Cluster type: The type of cluster setup needed, in this case select `Slurm Standalone`.
+        - Cluster name: The name of the cluster.
+        - Default user: The user that you log in with.
+        - Set user password: Set a password to be used for the chosen default user.
+        - IP or FQDN for Web Access: As described [here](../../flight-environment/use-flight/flight-web-suite/setup.md#setting-domain-name), this could be the public IP or public hostname.
 
-2. Then execute ./rke up
-Sometimes it will say that docker version is not supported, then execute ./rke up --ignore-docker-version.
+1. Apply an identity by running the command `flight profile apply`, E.g.
+    ```bash
+    flight profile apply login1 all-in-one
+    ```
 
-3. Once the installation is complete you will get a file named kube_config_cluster.yml in the same directory i.e. the kubeconfig of cluster we have created.
+    !!! tip
+        You can check all available identities for the current profile with `flight profile identities`
+
+7. Wait for the identity to finish applying. You can check the status of all nodes with `flight profile list`.
+
+    !!! tip
+        You can watch the progress of the application with `flight profile view login1 --watch`
+
+    !!! success
+        Congratulations, you've now created a SLURM Standalone environment! Learn more about SLURM in [the HPC Environment docs](../../hpc-environment-basics/hpc-usage/slurm/index.md).
 
 
+## Run Slurm Workload
+
+1. Create a file called `simplejobscript.sh`, and copy this into it:
+    ```
+    #!/bin/bash -l
+    echo "Starting running on host $HOSTNAME"
+    sleep 30
+    echo "Finished running - goodbye from $HOSTNAME"
+    ```
+
+2. Run the script with `sbatch simplejobscript.sh`, and to test all your nodes try queuing up enough jobs that all nodes will have to run.
+
+3. In the directory that the job was submitted from there should be a `slurm-X.out` where `X` is the Job ID returned from the `sbatch` command. This will contain the echo messages from the script created in step 1 
