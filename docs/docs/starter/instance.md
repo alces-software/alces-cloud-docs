@@ -18,12 +18,12 @@ With access to Alces Cloud sorted - let's get started launching some instances!
     Identify the flavor you wish to use and make a note of the name. More information on the available flavors can be found [here](../compute/flavors.md).
     ```
     (openstack) [myuser@stack01[poc1] ~]$ openstack flavor list
-    +--------------------------------------+----------+-------+------+-----------+-------+-----------+
-    | ID                                   | Name     |   RAM | Disk | Ephemeral | VCPUs | Is Public |
-    +--------------------------------------+----------+-------+------+-----------+-------+-----------+
-    | 22ce59c5-54bd-4fb2-b31d-2835397bffd1 | p1.large | 98304 |    0 |         0 |    12 | False     |
-    | a489b653-2740-4bf0-b2ea-a23a7f563361 | p1.small | 49152 |    0 |         0 |     6 | False     |
-    +--------------------------------------+----------+-------+------+-----------+-------+-----------+
+    +--------------------------------------+---------------------------------+-------+------+-----------+-------+-----------+
+    | ID                                   | Name                            |   RAM | Disk | Ephemeral | VCPUs | Is Public |
+    +--------------------------------------+---------------------------------+-------+------+-----------+-------+-----------+
+    | 26b933e3-4fde-4e10-9556-16b2e470cadf | c1.small                        | 49152 |  150 |       700 |     6 | False     |
+    | d538bd2d-10ce-4555-8d1d-46535ee815ee | c1.large                        | 98304 |  300 |      1400 |    12 | False     |
+    +--------------------------------------+---------------------------------+-------+------+-----------+-------+-----------+ 
     ```
 
     Identify the network to attach your instance to and make a note of the name. Your project will come with a default network already configured for you to use. More information on networks can be found [here](../networking/networks.md).
@@ -61,11 +61,11 @@ With access to Alces Cloud sorted - let's get started launching some instances!
 
     In our example, we use the following command to create our instance and assign the default security groups in order to allow SSH access. The command may take a few minutes to run, and will return a table with your instance details once it has been created.
     ```
-    (openstack) [myuser@stack01[poc1] ~]$ openstack server create --flavor p1.small --image b7e0d27f-1266-4069-a9b8-fb8a71f25421 --boot-from-volume 100 --network my-project-default --key-name mykeypair --security-group default --security-group allow-ssh --wait myinstance
+    (openstack) [myuser@stack01[poc1] ~]$ openstack server create --flavor c1.small --image b7e0d27f-1266-4069-a9b8-fb8a71f25421 --boot-from-volume 100 --network my-project-default --key-name mykeypair --security-group default --security-group allow-ssh --wait myinstance
     +-----------------------------+----------------------------------------------------------+
     | Field                       | Value                                                    |
     +-----------------------------+----------------------------------------------------------+
-    | flavor                      | p1.small (a489b653-2740-4bf0-b2ea-a23a7f563361)          |
+    | flavor                      | c1.small (26b933e3-4fde-4e10-9556-16b2e470cadf)          |
     | name                        | myinstance                                               |
     | status                      | ACTIVE                                                   |
     +-----------------------------+----------------------------------------------------------+
