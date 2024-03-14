@@ -146,3 +146,41 @@ With access to Alces Cloud sorted - let's get started launching some instances!
     [<img src="../img/instance-wizard-9.png" width="600px" />](img/instance-wizard-9.png)
 
     You should now be able to SSH to your instance using this floating IP and the `.pem` file downloaded earlier. This can be done using the `ssh` command on most Linux systems. Different images may require you to login as a different user - more information on the standard Alces images can be found [here](../compute/images.md).
+
+
+## Various Operation on Instance
+
+A user can observe various operation on instance like stop, start, pause, suspend, reboot, shutdown etc.
+
+=== "CLI"
+    | Operation                      | Description                                                                                                                                                                                                   | Command                         |
+    |--------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------|
+    | Stop an instance               | Stops the instance.                                                                                                                                                                                           | `openstack server stop <server_uuid/name>`        |
+    | Start an instance              | Starts a stopped instance.                                                                                                                                                                                    | `openstack server start <server_uuid/name>`       |
+    | Pause a running instance       | Immediately pause a running instance, storing its state in memory (RAM) in a frozen state. No confirmation is needed.                                                                                       | `openstack server pause <server_uuid/name>`       |
+    | Resume a paused instance       | Immediately resumes a paused instance. No confirmation is needed.                                                                                                                                             | `openstack server unpause <server_uuid/name>`     |
+    | Suspend a running instance     | Immediately suspends a running instance, storing its state on the instance disk. No confirmation is needed.                                                                                                  | `openstack server suspend <server_uuid/name>`     |
+    | Resume a suspended instance   | Immediately resumes a suspended instance. No confirmation is needed.                                                                                                                                          | `openstack server resume  <server_uuid/name>`      |
+    | Delete an instance             | Permanently destroys the instance. No confirmation is needed.                                                                                                                                                 | `openstack server delete  <server_uuid/name>`      |
+    | Edit instance metadata        | Use instance metadata to specify instance properties.                                                                                                                                                         | `openstack server set --property <key=value> [--property <key=value>]   <server_uuid/name>` |
+    | Add security groups            | Adds specified security groups to the instance.                                                                                                                                                               | `openstack server add security group <server_uuid/name>` |
+    | Remove security groups         | Removes specified security groups from the instance.                                                                                                                                                          | `openstack remove security group <server_uuid/name>` |
+    | Rescue an instance             | Puts an instance in rescue mode, allowing system repair and data recovery.                                                                                                                                    | `openstack server rescue <server_uuid/name>`      |
+    | Restore a rescued instance     | Reboots the rescued instance.                                                                                                                                                                                 | `openstack server unrescue <server_uuid/name>`    |
+    | View instance logs             | Displays the most recent section of the instance console log.                                                                                                                                                  | `openstack console log show <server_uuid/name>`   |
+    | Shelve an instance             | Retains instance data and resource allocations, but clears instance memory. Shelved instances are moved to SHELVED_OFFLOADED state. No confirmation is needed.                                               | `openstack server shelve <server_uuid/name>`      |
+    | Unshelve an instance           | Restores the instance using the shelved instance's disk image.                                                                                                                                                | `openstack server unshelve <server_uuid/name>`    |
+    | Lock an instance               | Prevents non-admin users from executing actions on the instance.                                                                                                                                              | `openstack server lock <server_uuid/name>`        |
+    | Unlock an instance             | Unlocks a previously locked instance.                                                                                                                                                                         | `openstack server unlock <server_uuid/name>`      |
+    | Soft reboot an instance        | Gracefully stops and restarts the instance.                                                                                                                                                                   | `openstack server reboot --soft  <server_uuid/name>` |
+    | Hard reboot an instance        | Stops and restarts the instance by shutting down its power.                                                                                                                                                   | `openstack server reboot --hard  <server_uuid/name>` |
+    | Rebuild an instance            | Rebuilds the instance using new image and disk-partition options. Useful for OS issues.                                                                                                                      | `openstack server rebuild <server_uuid/name>`     |
+
+
+=== "GUI"
+
+    - From the Alces Cloud dashboard, click `Compute` and then `Instances`:
+    - Click on the dropdown menu within the "Actions" column corresponding to the specific instance requiring the operation.
+
+    [<img src="../img/alces_cloud_win12.png" width="800px" />](img/alces_cloud_win12.png)
+
