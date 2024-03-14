@@ -1,5 +1,12 @@
 [
   {
+    "version": "instance_operation",
+    "title": "instance_operation",
+    "aliases": [
+      "staging"
+    ]
+  },
+  {
     "version": "alpha",
     "title": "alpha",
     "aliases": [
