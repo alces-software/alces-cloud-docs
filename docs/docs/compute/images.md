@@ -10,7 +10,10 @@ The following images are currently available on Alces Cloud:
 
 
 ## Upload Images
-You can upload the image to Alces cloud
+You can upload the image to Alces cloud.
+
+!!!note
+    Only images in RAW format are supported. You can convert images to this format using the `qemu-img convert` command.
 
 === "CLI"
     From the Alces Cloud login node, you can use the `openstack` command:
@@ -36,15 +39,20 @@ You can upload the image to Alces cloud
         ```
         wget https://download.cirros-cloud.net/0.5.2/cirros-0.5.2-x86_64-disk.img
         ```
+    - Convert the image to RAW
+        ```
+        qemu-img convert cirros-0.5.2-x86_64-disk.img cirros-0.5.2-x86_64-disk.raw
+        ```
+
     - Upload the image into Alces Cloud
         ```bash
-        (openstack) [user@stack01[poc1] ~]$] ~]$ openstack image create cirros --container-format bare --disk-format qcow2 --file cirros-0.5.2-x86_64-disk.img
+        (openstack) [user@stack01[poc1] ~]$] ~]$ openstack image create cirros --container-format bare --disk-format raw --file cirros-0.5.2-x86_64-disk.raw
         +------------------+--------------------------------------------------------------------------------------+
         | Field            | Value                                                                                |
         +------------------+--------------------------------------------------------------------------------------+
         | container_format | bare                                                                                 |
         | created_at       | 2024-03-13T09:23:27Z                                                                 |
-        | disk_format      | qcow2                                                                                |
+        | disk_format      | raw                                                                                  |
         | file             | /v2/images/5df0d202-c4c4-476c-ad04-cf7c41003df0/file                                 |
         | id               | 5df0d202-c4c4-476c-ad04-cf7c41003df0                                                 |
         | min_disk         | 0                                                                                    |
@@ -78,7 +86,7 @@ You can upload the image to Alces cloud
         | Image Description    | Enter a description of the image.                                                                            |
         | Image Source         | Choose the image source from the dropdown list. Your choices are Image Location and Image File.              |
         | Image File Location  | Based on your selection for Image Source, you either enter the location URL of the image or browse for the image file on your file system and add it. |
-        | Format               | Select the image format (for example, QCOW2) for the image.                                                  |
+        | Format               | Select the image format for the image. Only RAW images are supported.                                        |
         | Architecture         | Specify the architecture. For example, i386 for a 32-bit architecture or x86_64 for a 64-bit architecture.  |
         | Minimum Disk (GB)    | Leave this field empty.                                                                                      |
         | Minimum RAM (MB)     | Leave this field empty.                                                                                      |
