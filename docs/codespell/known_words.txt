@@ -28,3 +28,6 @@ hdd
 cli
 hostname
 slurm
+http
+nginx
+unshelve
