@@ -186,7 +186,7 @@ A user can observe various operation on instance like stop, start, pause, suspen
 
 ## Resizing an instance
 
-If you wanted to increae or decrease the memory or CPU count of the instance you can use resize operation. While resizing the instance, select the new flavor for instance that matches the requirement. Resize will peform rebuild and restart of the instance.
+If you wanted to increase or decrease the memory or CPU count of the instance you can use resize operation. While resizing the instance, select the new flavor for instance that matches the requirement. Resize will perform rebuild and restart of the instance.
 
 === "CLI"
     -  Fetch the name and ID of instances.
