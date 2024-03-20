@@ -17,7 +17,7 @@ Let's start with a step-by-step process, starting from creating virtual machines
 All the steps to launch and connection to instance is provided in [link](../../docs/starter/instance.md).
 
 !!! note
-    Just Make sure port `22, 80, 443` is opened as ingress rule in secuirty group that is attached to the instance.
+    Just Make sure port `22, 80, 443` is opened as ingress rule in security group that is attached to the instance.
     If `firewalld` is enabled on the server, in order to allow external connection on your nginx web server which runs on port `80` by default we need to update the setting by running the below command
     ```
     sudo firewall-cmd --permanent --add-service=http
