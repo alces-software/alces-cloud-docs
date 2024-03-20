@@ -184,3 +184,107 @@ A user can observe various operation on instance like stop, start, pause, suspen
 
     [<img src="../img/alces_cloud_win12.png" width="800px" />](img/alces_cloud_win12.png)
 
+## Resizing an instance
+
+If you wanted to increae or decrease the memory or CPU count of the instance you can use resize operation. While resizing the instance, select the new flavor for instance that matches the requirement. Resize will peform rebuild and restart of the instance.
+
+=== "CLI"
+    -  Fetch the name and ID of instances.
+    ```
+    openstack server list
+    ```
+
+    -  Fetch the name and ID of flavors.
+    ```
+    openstack flavor list
+    ```
+    - Resize the instance.
+    ```
+    openstack server resize --flavor <flavor_name_or_id> --wait <instance_name_or_id>
+    ```
+
+    !!! note
+        Restarting of instance may some time, instance is first powered off and then resize take place. During this time status of instance is `RESIZE`.
+        
+        ```
+        openstack server list
+        +----------------------+----------------+--------+------------------------------------+
+        | ID                   | Name           | Status | Networks                           |
+        +----------------------+----------------+--------+------------------------------------+
+        | 67bc9a9a-5928-47c... | myCirrosServer | RESIZE | admin_internal_net=192.168.111.139 |
+        +----------------------+----------------+--------+------------------------------------+
+        ```
+
+    - When resize is complete, the status of instance will be changed to `VERIFY_RESIZE`, you can confirm or revert the resize.
+        - Confirm the resize.
+        ```
+        openstack server resize confirm <instance_name_or_id>
+        ```
+        - Revert the resize.
+        ```
+        openstack server resize revert <instance_name_or_id>
+        ```
+
+    In the alces cloud we can perform resize of the instance by following the example below
+    ```
+    # Fetch all the instances
+    (openstack) [myuser@stack01[poc1] ~]$ openstack server list
+    +--------------------------------------+----------+--------+-----------------------------------+--------------------------+----------+
+    | ID                                   | Name     | Status | Networks                          | Image                    | Flavor   |
+    +--------------------------------------+----------+--------+-----------------------------------+--------------------------+----------+
+    | 7d611d7a-0595-4c4e-86e4-d536... | cirrosvm | ACTIVE | alces-testing-default=172.16.0.66 | N/A (booted from volume) | c1.small |
+    +--------------------------------------+----------+--------+-----------------------------------+--------------------------+----------+
+
+    # Fetch all the flavors 
+    (openstack) [myuser@stack01[poc1] ~]$ openstack flavor list
+    +--------------------------------------+----------+-------+------+-----------+-------+-----------+
+    | ID                                   | Name     |   RAM | Disk | Ephemeral | VCPUs | Is Public |
+    +--------------------------------------+----------+-------+------+-----------+-------+-----------+
+    | 26b933e3-4fde-4e10-9556-16b2e... | c1.small | 49152 |  150 |       700 |     6 | False     |
+    | d538bd2d-10ce-4555-8d1d-46535... | c1.large | 98304 |  300 |      1400 |    12 | False     |
+    +--------------------------------------+----------+-------+------+-----------+-------+-----------+
+
+    # Now pass the instance ID that we wanted to resize and then select the flavor that we want for our instance, here cirrosvm is selected 
+    # to get resized from c1.small to c1.large.
+    (openstack) [myuser@stack01[poc1] ~]$  openstack server resize --flavor d538bd2d-10ce-4555-8d1d-46535... --wait 7d611d7a-0595-4c4e-86e4-d536...
+
+    # Now the cirrosvm status is changed to RESIZE from ACTIVE.
+    (openstack) [myuser@stack01[poc1] ~]$ openstack server list
+    +--------------------------------------+----------+--------+-----------------------------------+--------------------------+----------+
+    | ID                                   | Name     | Status | Networks                          | Image                    | Flavor   |
+    +--------------------------------------+----------+--------+-----------------------------------+--------------------------+----------+
+    | 7d611d7a-0595-4c4e-86e4-d536... | cirrosvm | RESIZE | alces-testing-default=172.16.0.66 | N/A (booted from volume) | c1.small |
+    +--------------------------------------+----------+--------+-----------------------------------+--------------------------+----------+
+
+    # When the resize is complete then status of cirrosvm is changed to VERIFY_RESIZE, next step is to approve/cancel the resize.
+    (openstack) [myuser@stack01[poc1] ~]$ openstack server list
+    +--------------------------------------+----------+--------+-----------------------------------+--------------------------+-----------------+
+    | ID                                   | Name     | Status | Networks                          | Image                    | Flavor          |
+    +--------------------------------------+----------+--------+-----------------------------------+--------------------------+-----------------+
+    | 7d611d7a-0595-4c4e-86e4-d536... | cirrosvm | VERIFY_RESIZE | alces-testing-default=172.16.0.66 | N/A (booted from volume) | c1.small |
+    +--------------------------------------+----------+--------+-----------------------------------+--------------------------+-----------------+
+
+    # Resize of cirrosvm is approved, then status is changed from VERIFY_RESIZE to ACTIVE
+    openstack server resize confirm 7d611d7a-0595-4c4e-86e4-d536...
+
+    (openstack) [myuser@stack01[poc1] ~]$ openstack server list
+    +--------------------------------------+----------+--------+-----------------------------------+--------------------------+----------+
+    | ID                                   | Name     | Status | Networks                          | Image                    | Flavor   |
+    +--------------------------------------+----------+--------+-----------------------------------+--------------------------+----------+
+    | 7d611d7a-0595-4c4e-86e4-d536... | cirrosvm | ACTIVE | alces-testing-default=172.16.0.66 | N/A (booted from volume) | c1.large |
+    +--------------------------------------+----------+--------+-----------------------------------+--------------------------+----------+
+    ```
+
+=== "GUI"
+    - From the Alces Cloud dashboard, click `Compute` and then `Instances`:
+    - Click on the dropdown menu within the "Actions" column then click on `Resize Instance`.
+
+        [<img src="../img/alces_cloud_win12.png" width="800px" />](img/alces_cloud_win12.png)
+
+    - Choose a new flavor and click on the “Resize” button.
+    
+        [<img src="../img/alces_cloud_win14.png" width="800px" />](img/alces_cloud_win13.png)
+
+    - Resizing will require some time to process, and once completed, you will be prompted for approval or to revert the changes. Simply click "Approve" to confirm the resizing, or select "Revert" from the dropdown menu if you wish to undo the changes.
+    
+        [<img src="../img/alces_cloud_win13.png" width="800px" />](img/alces_cloud_win14.png)
