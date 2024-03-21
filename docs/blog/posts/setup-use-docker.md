@@ -152,7 +152,7 @@ hello-world   latest    d2c94e258dcb   10 months ago   13.3kB
 
 **Running a Docker container**
 
-In last steps we have successfully downladed Docker images (`hello-world and ubuntu:latest`).
+In last steps we have successfully downloaded Docker images (`hello-world and ubuntu:latest`).
 Now we will be running the Docker container using the latest image of ubuntu However, this time, we will interacting with the container shell by executing the following command:
 
 ```
