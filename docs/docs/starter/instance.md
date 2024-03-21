@@ -294,7 +294,7 @@ If you wanted to increase or decrease the memory or CPU count of the instance yo
 
 ## Create an instance snapshot
 
-Instance snapshot is a image that captures the state of the running instance disk. You can take snaphot of an instance and store it as a image, further that image can be used as a template to creaate new instances. Snaphots enable us to create new instances from another instances. If we wanted to preserve the state of instance for later use snapshot is good option to use.
+Instance snapshot is a image that captures the state of the running instance disk. You can take snapshot of an instance and store it as a image, further that image can be used as a template to create new instances. Snaphots enable us to create new instances from another instances. If we wanted to preserve the state of instance for later use snapshot is good option to use.
 
 === "CLI"
     - Scan all the servers and choose either the UUID or the name of the instance for which you intend to create a snapshot.
