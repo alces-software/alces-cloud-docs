@@ -37,4 +37,8 @@ dev
 certbot
 letsencrypt
 minio
+subcommand
+subcommands
+sudo
+walkthrough
 
