@@ -52,7 +52,7 @@ All the steps to launch and connection to instance is provided in [link](../../d
 
 ## Setup Nginx
 
-Nginx is available in Rocky’s default repositories so you can install it with a single command.
+Nginx is available in Rocky default repositories so you can install it with a single command.
 ```
 sudo dnf update -y
 sudo dnf install -y nginx 
