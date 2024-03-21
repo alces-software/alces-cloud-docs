@@ -291,3 +291,101 @@ If you wanted to increase or decrease the memory or CPU count of the instance yo
     - Resizing will require some time to process, and once completed, you will be prompted for approval or to revert the changes. Simply click "Approve" to confirm the resizing, or select "Revert" from the dropdown menu if you wish to undo the changes.
     
         [<img src="../img/alces_cloud_win13.png" width="800px" />](img/alces_cloud_win14.png)
+
+## Create an instance snapshot
+
+Instance snapshot is a image that captures the state of the running instance disk. You can take snaphot of an instance and store it as a image, further that image can be used as a template to creaate new instances. Snaphots enable us to create new instances from another instances. If we wanted to preserve the state of instance for later use snapshot is good option to use.
+
+=== "CLI"
+    - Scan all the servers and choose either the UUID or the name of the instance for which you intend to create a snapshot.
+        ```
+        openstack server list
+        ```
+    - Create snapshot of the instance using below command, replace <image_name> with a name for the new snapshot image and replace <instance> with the name or ID of the instance that you want to create the snapshot from.
+        ```
+        openstack server image create --name <image_name> <instance_name_or_uuid>
+        ```
+
+    In the below example we are creating snapshot with name `alces-docs-snap` of the instance names `alces-docs`.
+
+    Fetch all the instances and image in the Alces cloud.
+    ```
+
+    (openstack) [user@stack01[poc1] ~]$ openstack server list
+    +--------------------------------------+------------+--------+-------------------------------------------------+--------------------------+-----------+
+    | ID                                   | Name       | Status | Networks                                        | Image                    | Flavor    |
+    +--------------------------------------+------------+--------+-------------------------------------------------+--------------------------+-----------+
+    | ea89d5b1-52c3-4d52-b6e4-1fc288947... | alces-docs | ACTIVE | engineering-default=10.151.17.115, 172.16.0.182 | N/A (booted from volume) | m1.medium |
+    +--------------------------------------+------------+--------+-------------------------------------------------+--------------------------+-----------+
+
+    (openstack) [user@stack01[poc1] ~]$ openstack image list
+    +--------------------------------------+--------------------+--------+
+    | ID                                   | Name               | Status |
+    +--------------------------------------+--------------------+--------+
+    | 804716e7-257d-4975-8ae5-bead93a2e... | CirrOS             | active |
+    | 8fdd6edc-e876-4a7c-b623-37d6555d0... | Flight Solo 2024.1 | active |
+    | 15c14506-11e7-4294-af5e-abff71f63... | Rocky 9.3          | active |
+    +--------------------------------------+--------------------+--------+
+    ```
+
+    Now Creating Snapshot of instance `alces-docs` with name `alces-docs-snap`.
+    ```
+    (openstack) [user@stack01[poc1] ~]$ openstack server image create --name alces-docs-snap alces-docs
+    +------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+    | Field            | Value                                                                                                                                                                                           |
+    +------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+    | checksum         | d41d8cd98f00b204e9800998ecf84...                                                                                                                                                                |
+    | container_format | bare                                                                                                                                                                                            |
+    | created_at       | 2024-03-19T09:49:54Z                                                                                                                                                                            |
+    | disk_format      | raw                                                                                                                                                                                             |
+    | file             | /v2/images/45ebfe87-9920-40c1-8177-54ecd7692.../file                                                                                                                                            |
+    | id               | 45ebfe87-9920-40c1-8177-54ecd7692...                                                                                                                                                            |
+    | min_disk         | 10                                                                                                                                                                                              |
+    | min_ram          | 0                                                                                                                                                                                               |
+    | name             | alces-docs-snap                                                                                                                                                                                 |
+    | owner            | ce5b5d47a47348d59dd3bdcd21267...                                                                                                                                                                |
+    | properties       | base_image_ref='', bdm_v2='True', block_device_mapping='[{"tag": null, "encryption_format": null, "image_id": null, "volume_id": null, "device_type": "disk", "destination_type": "volume",     |
+    |                  | "volume_type": null, "device_name": "/dev/vda", "volume_size": 10, "encryption_options": null, "no_device": null, "source_type": "snapshot", "boot_index": 0, "guest_format": null,             |
+    |                  | "encryption_secret_uuid": null, "delete_on_termination": true, "snapshot_id": "215bf45f-26c6-4516-8d99-4586dacfd9c1", "encrypted": null, "disk_bus": "virtio"}]', boot_roles='member,reader',   |
+    |                  | direct_url='rbd://e4f759f8-da56-11ee-a031-525400dffa1c/hdd/45ebfe87-9920-40c1-8177-54ecd7692.../snap', hw_cdrom_bus='ide', hw_disk_bus='virtio', hw_input_bus='usb', hw_machine_type='pc',      |
+    |                  | hw_pointer_model='usbtablet', hw_video_model='virtio', hw_vif_model='virtio', os_hash_algo='sha512',                                                                                            |
+    |                  | os_hash_value='cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e', os_hidden='False',                            |
+    |                  | owner_project_name='engineering', owner_specified.openstack.md5='', owner_specified.openstack.object='images/Rocky 9.3', owner_specified.openstack.sha256='', owner_user_name='shubham.dang',   |
+    |                  | root_device_name='/dev/vda', stores='rbd'                                                                                                                                                       |
+    | protected        | False                                                                                                                                                                                           |
+    | schema           | /v2/schemas/image                                                                                                                                                                               |
+    | size             | 0                                                                                                                                                                                               |
+    | status           | active                                                                                                                                                                                          |
+    | tags             |                                                                                                                                                                                                 |
+    | updated_at       | 2024-03-19T09:49:55Z                                                                                                                                                                            |
+    | visibility       | private                                                                                                                                                                                         |
+    +------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+    ```
+
+    Now we can verifying the snapshot `alces-docs-snap` in image list, later this image will be used to create instances.
+    ```
+    (openstack) [user@stack01[poc1] ~]$ openstack image list
+    +--------------------------------------+--------------------+--------+
+    | ID                                   | Name               | Status |
+    +--------------------------------------+--------------------+--------+
+    | 804716e7-257d-4975-8ae5-bead93a2e... | CirrOS             | active |
+    | 8fdd6edc-e876-4a7c-b623-37d6555d0... | Flight Solo 2024.1 | active |
+    | 15c14506-11e7-4294-af5e-abff71f63... | Rocky 9.3          | active |
+    | 45ebfe87-9920-40c1-8177-54ecd7692... | alces-docs-snap    | active |
+    +--------------------------------------+--------------------+--------+
+    ```
+
+=== "GUI"
+
+    - From the Alces Cloud dashboard, click `Compute` and then `Instances`:
+    - Click on the dropdown menu within the "Actions" column then click on `Create Snapshot`.
+
+        [<img src="../img/alces_cloud_win17.png" width="800px" />](img/alces_cloud_win17.png)
+
+    - Enter the Snapshot Name and click on the `Create Snapshot` button.
+
+        [<img src="../img/alces_cloud_win16.png" width="800px" />](img/alces_cloud_win16.png)
+
+    - Snapshot Creation will take some time, In order to check image click `Compute` and then `Images`.
+
+        [<img src="../img/alces_cloud_win15.png" width="800px" />](img/alces_cloud_win15.png)
