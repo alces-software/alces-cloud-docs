@@ -205,3 +205,238 @@ Once Volume is attached to the instance, let's login to instance `myinstance` us
     tmpfs           1.6G     0  1.6G   0% /run/user/1000
     /dev/vdb         98G   24K   93G   1% /data
     ```
+
+
+## Extend Volume
+
+Sometimes virtual machines need more space to accommodate increasing data, Extending volume is best solution to handle the increasing data.
+
+!!! note
+    Before you resize the volume make sure to take care of below conditions.
+
+    - **Detach the Volume:** Resizing only works on unattached volumes. Ensure the volume you want to resize is detached from any instances.
+    - **New Size:** The new size must be greater than the current size. Shrinking volumes is not currently supported.
+
+=== "CLI"
+    1. List your volumes to identify the volume ID or Name using the following command:
+        ```
+        (openstack) [user@stack01[poc1] ~]$ openstack volume list
+        +--------------------------------------+----------+-----------+------+-------------+
+        | ID                                   | Name     | Status    | Size | Attached to |
+        +--------------------------------------+----------+-----------+------+-------------+
+        | e2b54ae8-98bc-475a-b644-906f8a46b... | myvolume | available |  100 |             |
+        +--------------------------------------+----------+-----------+------+-------------+
+        ```
+    2. Once you have the volume ID, use the following command to resize the volume:
+        ```
+        openstack volume set --size <new_size> <volume_id_or_name>
+        e.g.
+        (openstack) [user@stack01[poc1] ~]$ openstack volume set --size 105 e2b54ae8-98bc-475a-b644-906f8a46b...
+        ```
+    3. Now Verify the size of volume.
+        ```
+        (openstack) [user@stack01[poc1] ~]$ openstack volume list
+        +--------------------------------------+----------+-----------+------+-------------+
+        | ID                                   | Name     | Status    | Size | Attached to |
+        +--------------------------------------+----------+-----------+------+-------------+
+        | e2b54ae8-98bc-475a-b644-906f8a46b... | myvolume | available |  105 |             |
+        +--------------------------------------+----------+-----------+------+-------------+
+        ```
+
+
+
+
+=== "GUI"
+    1. On the Alces Cloud dashboard, navigate to `Volume` and then `Volumes` on the left side menu.
+    2. On the action dropdown menu for your volume, click `Extend Volume`.
+    3. Enter the New Size (in GB) and click `Extend Volume`.
+
+    The GUI will initiate the resize operation and provide you with progress updates.
+
+
+## Volume Snapshot  
+Snapshot capture a specific state of a volume at a given time. They're ideal for quick rollbacks or creating disaster recovery points.
+
+=== "CLI"
+    1. List your volumes to identify the volume ID using the following command:
+        ```
+        (openstack) [user@stack01[poc1] ~]$ openstack volume list
+        +--------------------------------------+----------+-----------+------+-------------+
+        | ID                                   | Name     | Status    | Size | Attached to |
+        +--------------------------------------+----------+-----------+------+-------------+
+        | b3aa108a-e35a-4686-ab33-761dbb653... | myvolume | available |   10 |             |
+        +--------------------------------------+----------+-----------+------+-------------+
+        ```
+    2. Once you have the volume ID or Name, use the following command to create a snapshot:
+        ```
+        openstack volume snapshot create --volume <volume_id_or_name> --description "<snapshot_description>"  <snapshot_name> 
+        e.g. 
+        (openstack) [user@stack01[poc1] ~]$ openstack volume snapshot create --volume b3aa108a-e35a-4686-ab33-761dbb653b60 --description "myvolume snapshot"  myvolume-snapshot
+        +-------------+--------------------------------------+
+        | Field       | Value                                |
+        +-------------+--------------------------------------+
+        | created_at  | 2024-03-26T11:17:34.366796           |
+        | description | myvolume snapshot                    |
+        | id          | 8c2635ef-2a04-4ab9-84aa-0ab601dcc... |
+        | name        | myvolume-snapshot                    |
+        | properties  |                                      |
+        | size        | 10                                   |
+        | status      | creating                             |
+        | updated_at  | None                                 |
+        | volume_id   | b3aa108a-e35a-4686-ab33-761dbb653... |
+        +-------------+--------------------------------------+
+        ```
+        <snapshot_name> with a desired name for your snapshot.
+        <snapshot_description> with an optional description (in quotes)
+        <volume_id_or_name> with the actual ID or Name  of your volume.
+    
+    3. Now Verify the snapshot of volume `myvolume`.
+        ```
+        (openstack) [user@stack01[poc1] ~]$ openstack volume snapshot list
+        +--------------------------------------+-------------------+-------------------+-----------+------+
+        | ID                                   | Name              | Description       | Status    | Size |
+        +--------------------------------------+-------------------+-------------------+-----------+------+
+        | 8c2635ef-2a04-4ab9-84aa-0ab601dcc... | myvolume-snapshot | myvolume snapshot | available |   10 |
+        +--------------------------------------+-------------------+-------------------+-----------+------+
+        ```
+
+=== "GUI"
+    1. On the Alces Cloud dashboard, navigate to `Volume` and then `Volumes` on the left side menu.
+    2. On the action dropdown menu for your volume, click `Create Snapshot`.
+    3. Enter Name for your snapshot and optionally add a Description. and click `Create Volume Snapshot`.
+
+    The GUI will initiate the snapshot operation and provide you with progress updates.
+
+
+## Volume Backup
+Backup create a copy of a volume that can be stored offsite or in a separate system. Backups provide a more robust solution for long-term data preservation and disaster recovery scenarios involving complete system outages.
+
+=== "CLI"
+    **Backing Up Volume**
+
+    1. List your volumes to identify the volume ID or Name using the following command:
+        ```
+        (openstack) [user@stack01[poc1] ~]$ openstack volume list
+        +--------------------------------------+----------+-----------+------+-------------+
+        | ID                                   | Name     | Status    | Size | Attached to |
+        +--------------------------------------+----------+-----------+------+-------------+
+        | b3aa108a-e35a-4686-ab33-761dbb653... | myvolume | available |   10 |             |
+        +--------------------------------------+----------+-----------+------+-------------+        
+        ```
+
+    2. Once you have the volume ID or Name, use the following command to create a volume backup:
+        ```
+        openstack volume backup create --name <backup_name> --description "<backup description>" <volume_id_or_name>
+        e.g.
+        (openstack) [user@stack01[poc1] ~]$ openstack volume backup create --name myvolume-backup --description "myvolume backup" myvolume
+        +-----------+--------------------------------------+
+        | Field     | Value                                |
+        +-----------+--------------------------------------+
+        | id        | aa150436-7098-4af5-a5f6-73eeec0de... |
+        | name      | myvolume-backup                      |
+        | volume_id | b3aa108a-e35a-4686-ab33-761dbb653... |
+        +-----------+--------------------------------------+
+        ```
+    3. Now Verify the backup of volume `myvolume`.
+        ```
+        (openstack) [user@stack01[poc1] ~]$ openstack volume backup list
+        +--------------------------------------+-----------------+-----------------+-----------+------+-------------+
+        | ID                                   | Name            | Description     | Status    | Size | Incremental |
+        +--------------------------------------+-----------------+-----------------+-----------+------+-------------+
+        | aa150436-7098-4af5-a5f6-73eeec0de... | myvolume-backup | myvolume backup | available |   10 | False       |
+        +--------------------------------------+-----------------+-----------------+-----------+------+-------------+        
+        ```
+    
+    **Backing Up Snapshot**
+
+    1. List your snapshots to identify the snapshot ID or Name using the following command:
+        ```
+        (openstack) [user@stack01[poc1] ~]$ openstack volume snapshot list
+        +--------------------------------------+-------------------+-------------+-----------+------+
+        | ID                                   | Name              | Description | Status    | Size |
+        +--------------------------------------+-------------------+-------------+-----------+------+
+        | 5dc327db-c1c7-4593-a60e-57508fa4b... | myvolume-snapshot |             | available |   10 |
+        +--------------------------------------+-------------------+-------------+-----------+------+        
+        ```
+    2. Once you have the snapshot ID or Name, use the following command to create a snapshot backup:
+        ```
+        openstack volume backup create --name <backup_name> --description "<backup description>" --snapshot <snapshot_id_or_name> <volume_id_or_name>
+        e.g.
+        (openstack) [user@stack01[poc1] ~]$ openstack volume backup create --name backup_name --description "<backup description>" --snapshot  5dc327db-c1c7-4593-a60e-57508fa4b... myvolume
+        +-----------+--------------------------------------+
+        | Field     | Value                                |
+        +-----------+--------------------------------------+
+        | id        | 39e2f814-5985-4a85-8963-3168efb99... |
+        | name      | backup_name                          |
+        | volume_id | b3aa108a-e35a-4686-ab33-761dbb653... |
+        +-----------+--------------------------------------+
+        ```
+    3. Now Verify the backup of volume `myvolume`.
+        ```
+        (openstack) [user@stack01[poc1] ~]$ openstack volume backup list
+        +--------------------------------------+-----------------+----------------------+-----------+------+-------------+
+        | ID                                   | Name            | Description          | Status    | Size | Incremental |
+        +--------------------------------------+-----------------+----------------------+-----------+------+-------------+
+        | 39e2f814-5985-4a85-8963-3168efb99... | backup_name     | <backup description> | available |   10 | False       |
+        +--------------------------------------+-----------------+----------------------+-----------+------+-------------+
+        ```
+
+=== "GUI"
+    **Backing Up Volume**
+
+    1. On the Alces Cloud dashboard, navigate to `Volume` and then `Volumes` on the left side menu.
+    2. On the action dropdown menu for your volume, click `Create Backup`.
+    3. Enter Name for your backup and optionally add a Description. and click `Create Volume Backup`.
+
+    The GUI will initiate the backup operation and provide you with progress updates.
+
+    **Backing Up Snapshot**
+
+    1. On the Alces Cloud dashboard, navigate to `Volume` and then `Snapshots` on the left side menu.
+    2. On the action dropdown menu for your snapshot, click `Create Backup`.
+    3. Enter Name for your backup, optionally add a Description and optionally add container name. and click `Create Volume Backup`.
+
+    The GUI will initiate the backup operation and provide you with progress updates.
+
+
+## Volume Restore
+
+=== "CLI"
+    1. List your volume backups to identify the volume backup ID or Name using the following command:
+        ```
+        (openstack) [user@stack01[poc1] ~]$ openstack volume backup list
+        +--------------------------------------+-----------------+-------------+-----------+------+-------------+
+        | ID                                   | Name            | Description | Status    | Size | Incremental |
+        +--------------------------------------+-----------------+-------------+-----------+------+-------------+
+        | 078d3bc2-cc87-4fe7-b916-551e72f660d4 | myvolume-backup |             | available |   10 | False       |
+        +--------------------------------------+-----------------+-------------+-----------+------+-------------+
+        ```
+
+    2. Once you have the volume backup ID or Name, use the following command to restore backup to volume:
+        ```
+        openstack volume backup restore <backup_id_or_name> <volume_id_or_name>
+
+        # <volume_id_or_name>: name or ID for existing volume, name only for new volume
+        e.g.
+        (openstack) [user@stack01[poc1] ~]$ openstack volume backup restore myvolume-backup new-volume-restore
+        ```
+
+    3. Now Verify the backup of volume `myvolume`.
+        ```
+        (openstack) [user@stack01[poc1] ~]$ openstack volume list
+        +--------------------------------------+--------------------+-----------+------+-------------+
+        | ID                                   | Name               | Status    | Size | Attached to |
+        +--------------------------------------+--------------------+-----------+------+-------------+
+        | 0447f7e6-1bb8-4938-8c73-ce21db45184c | new-volume-restore | available |   10 |             |
+        | b3aa108a-e35a-4686-ab33-761dbb653b60 | myvolume           | available |   10 |             |
+        +--------------------------------------+--------------------+-----------+------+-------------+        
+        ```
+    
+=== "GUI"
+
+    1. On the Alces Cloud dashboard, navigate to `Volume` and then `Backups` on the left side menu.
+    2. On the action dropdown menu for your backup, click `Restore Backup`.
+    3. You may select create a new volume or select an existing volume to overwrite, then click `Restore Backup to Volume`.
+
+    The GUI will initiate the restore operation and provide you with progress updates.
+
