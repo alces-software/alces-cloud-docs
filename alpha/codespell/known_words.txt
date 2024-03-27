@@ -42,3 +42,4 @@ subcommands
 sudo
 walkthrough
 rockys
+ceph
