@@ -29,7 +29,7 @@ Choosing the right storage solution for your virtual machines (VMs) is crucial f
 
 **Local Disk**
 
-Local Disk is a storage in which data of virtual machines is present on the physical compute node due to which it provides good speed. It has some drawbacks as well i.e. lack of persistence of data when virtual machine is termninated and lack of reducacny that means if hardware on which id spawned faces failure then all data is lost.
+Local Disk is a storage in which data of virtual machines is present on the physical compute node due to which it provides good speed. It has some drawbacks as well i.e. lack of persistence of data when virtual machine is terminated and lack of redundancy that means if hardware on which id spawned faces failure then all data is lost.
 
 Types of Local Disk are given below:
 - **Root Disk:** Root Disk stores the operating system and essential boot files. Since it resides on the compute node's local disk, the root disk offers exceptional read/write speeds, making it ideal for applications requiring fast access to frequently used data.
