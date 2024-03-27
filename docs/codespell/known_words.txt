@@ -43,3 +43,5 @@ sudo
 walkthrough
 rockys
 ceph
+ollama
+api

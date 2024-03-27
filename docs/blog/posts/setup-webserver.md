@@ -97,7 +97,7 @@ http://server_ip
 ```
 
 It will open the landing page of nginx like below.
-[<img src="../images/setup-webserver-2.png" width="800px" />](images/setup-webserver-2.png)
+[<img src="../images/setup-webserver-2.png" width="800px" />](../images/setup-webserver-2.png)
 
 
 ### Manage Nginx server process
@@ -189,7 +189,7 @@ http://server_ip
 ```
 
 It will open the landing page of Apache like below.
-[<img src="../images/setup-webserver-1.png" width="800px" />](images/setup-webserver-1.png)
+[<img src="../images/setup-webserver-1.png" width="800px" />](../images/setup-webserver-1.png)
 
 
 ### Manage Apache server process
