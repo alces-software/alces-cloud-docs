@@ -21,7 +21,6 @@ nav:
       - Storage:
         - Volumes: docs/storage/volumes.md
   - Troubleshooting:
-      - docs/troubleshooting/index.md
       - FAQs: docs/troubleshooting/faq.md
       - Instances: docs/troubleshooting/instances.md
   - Policies:

@@ -49,18 +49,20 @@
            src="{{ base_url }}/{{ config.theme.logo }}">
     </a>
 
+    {% if base_url == "." %}
     <div id="header-nav-links">
       <!-- <a href="{{ base_url }}/solo">
         FLIGHT SOLO
       </a>
       -->
-      <a href="{{ base_url }}/docs">
+      <a href="{{ base_url }}/docs" >
         DOCUMENTATION
       </a>
       <a href="{{ base_url }}/blog/">
        BLOGS
       </a> 
     </div>
+    {% endif %}
 
     <div class="top-right-links">
 
