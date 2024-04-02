@@ -35,7 +35,7 @@ All the steps to launch and connection to instance is provided in [link](../../d
   ```
   cd examples/mnist
   ```
-- Install Required Dependencies and execute`main.py`, this script trains a CNN model to classify handwritten digits from the MNIST dataset. 
+- Install Required Dependencies and then execute`main.py`, this script trains a CNN model to classify handwritten digits from the MNIST dataset. 
   ```
   pip install -r requirements.txt
   python main.py
