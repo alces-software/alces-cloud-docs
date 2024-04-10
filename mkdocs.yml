@@ -28,6 +28,8 @@ nav:
     - Terms of Service: docs/policy/tos.md
   - Blogs:
     - blog/index.md
+  - Sites Status:
+    - docs/sitesstatus/sitesstatus.md
 
 not_in_nav: |
  /index.md
