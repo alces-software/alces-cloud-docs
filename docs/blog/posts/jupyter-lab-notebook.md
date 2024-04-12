@@ -72,7 +72,7 @@ This will launch a web interface (usually at `http://localhost:8888/`) where you
 
 
 !!! note
-    For more detials, please refer to offical documentation.
+    For more details, please refer to official documentation.
 
     - [Jupyter Notebook Documentation](https://docs.jupyter.org/)
     - [JupyterLab Documentation](https://jupyterlab.readthedocs.io/)
