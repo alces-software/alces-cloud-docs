@@ -45,3 +45,6 @@ rockys
 ceph
 ollama
 api
+cuda
+dataset
+mps
