@@ -48,3 +48,4 @@ api
 cuda
 dataset
 mps
+jupyter
