@@ -44,7 +44,7 @@ Biopython is a widely used open-source library for computational biology and bio
 
 - File Parsing: It supports parsing various file formats commonly used in bioinformatics, such as FASTA, GenBank, BLAST, and PDB formats. This allows users to read, write, and manipulate sequence data stored in different formats seamlessly.
 
-- Structural Biology: Biopython provides tools for working with biomolecular structures, enabling tasks such as parsing and analysing protein structures from PDB files, calculating structural properties, and performing structure alignments.
+- Structural Biology: Biopython provides tools for working with bimolecular structures, enabling tasks such as parsing and analysing protein structures from PDB files, calculating structural properties, and performing structure alignments.
 
 - Phylogenetics: It includes modules for phylogenetic analysis, allowing users to construct, manipulate, and visualize phylogenetic trees. This is particularly useful for studying evolutionary relationships between different species or sequences.
 
