@@ -20,7 +20,7 @@ Diabetes is a chronic disease that affects millions of people worldwide. Early d
 ## Launch the Instance  
 All the steps to launch and connection to instance is provided in [link](../../docs/starter/instance.md).
 
-## Install Jupter Notebook and Lab
+## Install Jupyter Notebook and Lab
 All the steps to install jupyter notebook and lab is provided in [link](./jupyter-lab-notebook.md).
 
 

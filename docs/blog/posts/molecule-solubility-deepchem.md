@@ -9,7 +9,7 @@ readtime: 2
 
 # Predict Molecule Solubility With Deepchem
 
-In this blog post, we will provide a comprehensive guide on analysing moluecule solubility using deepchem. Our setup revolves around a single node with Jupyter notebook installed.
+In this blog post, we will provide a comprehensive guide on analysing molecule solubility using deepchem. Our setup revolves around a single node with Jupyter notebook installed.
 
 
 Let's start with a step-by-step process, starting from creating virtual machines on the Alces Cloud platform, followed by installation of jupyter lab and notebook and then analysis of molecule solubility.
@@ -19,7 +19,7 @@ Let's start with a step-by-step process, starting from creating virtual machines
 ## Launch the Instance  
 All the steps to launch and connection to instance is provided in [link](../../docs/starter/instance.md).
 
-## Install Jupter Notebook and Lab
+## Install Jupyter Notebook and Lab
 All the steps to install jupter notebook and lab is provided in [link](./jupyter-lab-notebook.md).
 
 
