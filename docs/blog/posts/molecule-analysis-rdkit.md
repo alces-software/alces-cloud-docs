@@ -19,7 +19,7 @@ Let's start with a step-by-step process, starting from creating virtual machines
 ## Launch the Instance  
 All the steps to launch and connection to instance is provided in [link](../../docs/starter/instance.md).
 
-## Install Jupter Notebook and Lab
+## Install Jupyter Notebook and Lab
 All the steps to install jupyter notebook and lab is provided in [link](./jupyter-lab-notebook.md).
 
 

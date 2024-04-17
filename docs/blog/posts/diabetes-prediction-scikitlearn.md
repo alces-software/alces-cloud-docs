@@ -20,8 +20,8 @@ Diabetes is a chronic disease that affects millions of people worldwide. Early d
 ## Launch the Instance  
 All the steps to launch and connection to instance is provided in [link](../../docs/starter/instance.md).
 
-## Install Jupter Notebook and Lab
-All the steps to install jupter notebook and lab is provided in [link](./jupyter-lab-notebook.md).
+## Install Jupyter Notebook and Lab
+All the steps to install jupyter notebook and lab is provided in [link](./jupyter-lab-notebook.md).
 
 
 ## Building the Diabetes prediction Model
@@ -56,7 +56,7 @@ All the steps to install jupter notebook and lab is provided in [link](./jupyter
             y = df.iloc[:, -1]
     ```
 
-- Split the data into training and testing sets using train_test_split from scikit-learn:
+- Split the data into training and testing sets using train test split from scikit-learn:
 
     ```
     ln []:  from sklearn.model_selection import train_test_split

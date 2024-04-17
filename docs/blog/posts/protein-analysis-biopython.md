@@ -55,7 +55,7 @@ Biopython is a widely used open-source library for computational biology and bio
 - Integration with Other Tools: Biopython can be integrated with other bioinformatics tools and databases, facilitating workflows and enabling seamless access to external resources.
 
 
-## Analyse Unknown Protien 
+## Analyse Unknown Protein 
 
 Biopython simplifies analysis of unknown proteins by enabling researchers to calculate key properties like amino acid count, charge at specific pH, aromaticity, and isoelectric point. These features, along with the instability index, provide a foundation for protein classification and further studies. Below is the example to showcase biopython capabilities in analysing unknown protein.
 
