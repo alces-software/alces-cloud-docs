@@ -56,7 +56,7 @@ All the steps to install jupyter notebook and lab is provided in [link](./jupyte
             y = df.iloc[:, -1]
     ```
 
-- Split the data into training and testing sets using train_test_split from scikit-learn:
+- Split the data into training and testing sets using train test split from scikit-learn:
 
     ```
     ln []:  from sklearn.model_selection import train_test_split

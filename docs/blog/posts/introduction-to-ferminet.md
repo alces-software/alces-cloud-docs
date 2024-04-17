@@ -59,7 +59,7 @@ mean_energy = torch.mean(energy)
 print("Energy before start:", mean_energy)
 ```
 
-This should produce an energy close to the Hartree-Fock (HF) ground state energy.
+This should produce an energy close to the Hartrees-Fock (HF) ground state energy.
 
 ## Training the FermiNet Model to Obtain the Ground State Energy
 Before beginning the actual training process, ensure that the "prepare_train" method has been called to perform Markov Chain Monte Carlo (MCMC) burn-in and reinitialize electron positions. Then, call the "train" method to initiate the FermiNet training.
