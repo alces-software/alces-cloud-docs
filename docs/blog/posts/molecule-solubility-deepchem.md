@@ -25,7 +25,7 @@ All the steps to install jupter notebook and lab is provided in [link](./jupyter
 
 
 ## Setup
-- First we need to make sure that DeepChem is running, We are going to use model based on tensorflow, because of that we need to add \[tensorflow\] to the pip install commmand to ensure the necessary dependencies are also installed.
+- First we need to make sure that DeepChem is running, We are going to use model based on tensorflow, because of that we need to add \[tensorflow\] to the pip install command to ensure the necessary dependencies are also installed.
 
     ```In []: pip install --pre deepchem[tensorflow]
     ```
