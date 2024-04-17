@@ -11,7 +11,7 @@ readtime: 2
 In this blog post, we will provide a comprehensive guide on how to build a diabetes prediction model using Scikit-Learn. Our setup revolves around a single node with Jupyter notebook installed.
 
 
-Let's start with a step-by-step process, starting from creating virtual machines on the Alces Cloud platform, followed by installation of jupyter lab and notebook and then building the predition model.
+Let's start with a step-by-step process, starting from creating virtual machines on the Alces Cloud platform, followed by installation of jupyter lab and notebook and then building the prediction model.
 <!-- more -->
 
 Diabetes is a chronic disease that affects millions of people worldwide. Early diagnosis and treatment are crucial for managing the condition and preventing complications. With the advancement in machine learning and artificial intelligence have made it possible to develop accurate predictive models for diseases like diabetes. we will use the Pima Indians Diabetes Database. Our objective is to predict whether or not a patient has diabetes based on certain diagnostic measurements.
