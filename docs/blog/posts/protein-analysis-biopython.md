@@ -36,7 +36,7 @@ All the steps to launch and connection to instance is provided in [link](../../d
     biopython --version
     ```
 
-## What is Biopython and its capabilites
+## What is Biopython and its capabilities
 
 Biopython is a widely used open-source library for computational biology and bioinformatics tasks. It's written in Python and provides tools for a variety of bioinformatics tasks, making it a powerful resource for researchers, developers, and bioinformaticians alike. Here's a brief overview of its capabilities:
 
@@ -50,14 +50,14 @@ Biopython is a widely used open-source library for computational biology and bio
 
 - Population Genetics: Biopython offers functionality for population genetics analysis, including computation of genetic diversity indices, estimation of evolutionary distances, and simulation of genetic data.
 
-- Bioinformatics Algorithms: It implements various algorithms commonly used in bioinformatics, such as sequence alignment algorithms (e.g., Smith-Waterman, Needleman-Wunsch), sequence searching algorithms (e.g., BLAST), and phylogenetic reconstruction methods (e.g., neighbor-joining, maximum likelihood).
+- Bioinformatics Algorithms: It implements various algorithms commonly used in bioinformatics, such as sequence alignment algorithms (e.g., Smith-Waterman, Needleman-Wunsch), sequence searching algorithms (e.g., BLAST), and phylogenetic reconstruction methods (e.g., neighbour-joining, maximum likelihood).
 
 - Integration with Other Tools: Biopython can be integrated with other bioinformatics tools and databases, facilitating workflows and enabling seamless access to external resources.
 
 
 ## Analyse Unknown Protien 
 
-Biopython simplifies analysis of unknown proteins by enabling researchers to calculate key properties like amino acid count, charge at specific pH, aromaticity, and isoelectric point. These features, along with the instability index, provide a foundation for protein classification and further studies. Below is the example to showcase biopython capabilites in analysing unknown protein.
+Biopython simplifies analysis of unknown proteins by enabling researchers to calculate key properties like amino acid count, charge at specific pH, aromaticity, and isoelectric point. These features, along with the instability index, provide a foundation for protein classification and further studies. Below is the example to showcase biopython capabilities in analysing unknown protein.
 
 ```
 from Bio.SeqUtils.ProtParam import ProteinAnalysis
