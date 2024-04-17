@@ -49,3 +49,15 @@ cuda
 dataset
 mps
 jupyter
+scikit
+train_test_split
+final_energy
+hyperparameters
+prepare_train
+pretraining
+datasets
+deepchem
+graphconv
+tensorflow
+bioinformaticians
+bioinformatics
