@@ -70,3 +70,6 @@ biopython
 isoelectric
 phylogenetic
 wunsch
+numpy
+needleman
+phylogenetics
