@@ -61,3 +61,6 @@ graphconv
 tensorflow
 bioinformaticians
 bioinformatics
+hartree
+hartrees
+fock
