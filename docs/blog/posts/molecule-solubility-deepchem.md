@@ -95,4 +95,4 @@ All the steps to install jupter notebook and lab is provided in [link](./jupyter
 
 
 !!! note 
-    For more details about the pleae check the [link](https://github.com/deepchem/deepchem/blob/master/examples/tutorials/The_Basic_Tools_of_the_Deep_Life_Sciences.ipynb)
+    For more details about the please check the [link](https://github.com/deepchem/deepchem/blob/master/examples/tutorials/The_Basic_Tools_of_the_Deep_Life_Sciences.ipynb)
